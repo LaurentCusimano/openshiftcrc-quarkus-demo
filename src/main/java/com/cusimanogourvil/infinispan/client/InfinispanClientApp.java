@@ -15,13 +15,13 @@ public class InfinispanClientApp {
     @Inject
     RemoteCacheManager cacheManager;
     private static final String CACHE_CONFIG = "<infinispan><cache-container>"+
-            "<distributed-cache name=\\\"%s\\\"></distributed-cache>"+
+            "<distributed-cache name=\"mycache\"></distributed-cache>"+
             "</cache-container></infinispan>";
 
     void onStart(@Observes StartupEvent e){
         LOGGER.info("Create or get cache named mycache with the default configuration");
         RemoteCache<Object, Object> cache = cacheManager.administration().getOrCreateCache("mycache",
-                new XMLStringConfiguration(String.format(CACHE_CONFIG, "mycache")));
+                new XMLStringConfiguration(CACHE_CONFIG));
         cache.put("hello", "Hello World, Infinispan is up!");
     }
 }
