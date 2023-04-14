@@ -20,6 +20,10 @@
                 content: ""
             };
 
+            $scope.form_get = {
+                name: ""
+            };
+
             //Now load the data from server
             _refreshPageData();
 
@@ -36,6 +40,19 @@
                     }
                 }).then(_success, _error);
             };
+
+            $scope.get = function (){
+                var data = { "name": $scope.form_get.name };
+
+                $http({
+                    method: "GET",
+                    url:'/record/' + data.name,
+                }).then(function successCallback(response){
+                    alert(data.name + " = " + response.data)
+                }, function errorCallback(response) {
+                    console.log(response.statusText);
+                })
+            }
 
             /* Private Methods */
             //HTTP GET- get all records collection
@@ -81,6 +98,14 @@
             <div class="col-6"><input type="text" placeholder="Content" ng-model="form.content" size="60"/></div>
         </div>
         <input type="submit" value="Save"/>
+    </form>
+
+    <h3>Get a record</h3>
+    <form ng-submit="get()">
+        <div class="row">
+            <div class="col-6"><input type="text" placeholder="Name" ng-model="form_get.name" size="60"/></div>
+        </div>
+        <input type="submit" value="Get"/>
     </form>
 
     <h3>Record List</h3>

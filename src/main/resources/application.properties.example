@@ -1,0 +1,6 @@
+quarkus.infinispan-client.hosts=x.x.x.x:11222
+
+quarkus.infinispan-client.username=developer
+quarkus.infinispan-client.password=
+
+quarkus.infinispan-client.client-intelligence=BASIC
