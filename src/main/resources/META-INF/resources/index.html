@@ -64,6 +64,7 @@
                     $scope.records = response.data;
                 }, function errorCallback(response) {
                     console.log(response.statusText);
+		    alert(response.statusText);
                 });
             }
 
